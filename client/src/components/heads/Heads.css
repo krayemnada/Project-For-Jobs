@@ -1,0 +1,6 @@
+.one {
+    float: right;
+}
+li .one {
+    display: inline;
+}

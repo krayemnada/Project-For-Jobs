@@ -1,0 +1,71 @@
+.ftco-footer {
+    font-size: 16px;
+    padding: 7em 0;
+    z-index: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(206, 75, 232, 1) 0%,
+        rgba(32, 124, 229, 1) 100%
+    );
+}
+.ftco-no-pt {
+    padding-top: 0 !important;
+}
+.ftco-footer-widget h2 {
+    font-weight: normal;
+    color: white;
+    margin-bottom: 40px;
+    font-size: 18px;
+    font-weight: 600;
+}
+.ftco-animate {
+    opacity: 0;
+    visibility: hidden;
+    color: white;
+}
+.py-2 {
+    color: white;
+    text-decoration: none;
+}
+.text {
+    color: white;
+    text-decoration: none;
+}
+.block-23 {
+    display: inline-block;
+    text-decoration: none;
+}
+ul li {
+    color: rgba(255, 255, 255, 0.8);
+}
+ul span {
+    color: rgba(255, 255, 255, 0.1);
+}
+.ftco-heading-2 {
+    font-size: 17px;
+    font-weight: 400;
+    color: white;
+}
+.ftco-footer-social li {
+    list-style: none;
+    margin: 0 10px 0 0;
+    display: inline-block;
+}
+.ftco-footer-social span {
+    position: absolute;
+    font-size: 18px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white !important;
+}
+.ftco-footer-social a {
+    height: 40px;
+    width: 40px;
+    display: block;
+    float: left;
+    color: white;
+    border-radius: 50%;
+    position: relative;
+    background: #24d2c8;
+}

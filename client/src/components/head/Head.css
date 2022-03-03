@@ -1,0 +1,73 @@
+.nav {
+    /* position: absolute; */
+    width: 100%;
+    /* z-index: 10; */
+    top: 0;
+    height: 70px;
+    /* background-color: blue; */
+    background: linear-gradient(
+        135deg,
+        rgba(32, 124, 229, 1) 0%,
+        rgba(206, 75, 232, 1) 100%
+    );
+}
+.tite {
+    width: 150px;
+    height: 40px;
+    border: 1px;
+    color: white;
+    /* margin-top: -20px; */
+    /* padding: 14px 16px; */
+    /* top: 100px; */
+    margin-right: 500px;
+    background: linear-gradient(
+        135deg,
+        rgba(206, 75, 232, 1) 0%,
+        rgba(32, 124, 229, 1) 100%
+    );
+    /* margin-left: 100px; */
+    font-family: "Roboto";
+}
+.navbar-na {
+    display: inline;
+    text-decoration: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    /* display: inline; */
+    float: right;
+    /* margin-bottom: 30px; */
+}
+
+li a {
+    display: inline;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.lin {
+    color: white;
+    /* display: inline; */
+    text-decoration: none;
+    /* border: 1px solid; */
+    /* padding: 5px; */
+    box-sizing: 1000px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    background-color: rgba(32, 124, 229, 1);
+}
+button {
+    background: linear-gradient(
+        135deg,
+        rgba(206, 75, 232, 1) 0%,
+        rgba(32, 124, 229, 1) 100%
+    );
+    color: white;
+    border: none;
+}
