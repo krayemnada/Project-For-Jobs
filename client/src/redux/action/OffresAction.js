@@ -9,7 +9,13 @@ import {
     DELETE,
     DELETE_FAIL,
     DELETE_SUCCESS,
+    EDIT,
+    EDIT_FAIL,
+    EDIT_SUCCESS,
     GET,
+    GET_BY_ID,
+    GET_BY_ID_FAIL,
+    GET_BY_ID_SUCCESS,
     GET_FAIL,
     GET_SUCCESS,
 } from "../actionTypes";
@@ -17,9 +23,16 @@ import {
 //get offers
 
 export const getOffer = () => async (dispatch) => {
-    dispatch({ type: GET });
+    // dispatch({ type: GET });
     try {
-        const res = await axios.get("/offers/getoffers");
+        const token = localStorage.getItem("token");
+        const config = {
+            headers: {
+                Authorization: token,
+            },
+        };
+        const res = await axios.get("/offers/getoffers", config);
+
         dispatch({
             type: GET_SUCCESS,
             payload: res.data,
@@ -53,10 +66,10 @@ export const addOffers = (newoffer) => async (dispatch) => {
 
 // delete one offer
 
-export const deleteUser = (_id) => async (dispatch) => {
+export const deleteOffer = (_id) => async (dispatch) => {
     dispatch({ type: DELETE });
     try {
-        const res = axios.delete(`/offers/delete/${_id}`);
+        const res = await axios.delete(`/offers/delete/${_id}`);
 
         dispatch({
             type: DELETE_SUCCESS,
@@ -65,6 +78,45 @@ export const deleteUser = (_id) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: DELETE_FAIL,
+            payload: error.response.data,
+        });
+    }
+};
+//edit one offer
+export const editOffer = (editedOffer) => async (dispatch) => {
+    dispatch({
+        type: EDIT,
+    });
+    try {
+        const res = await axios.put(
+            `/Offers/editone/${editedOffer._id}`,
+            editedOffer
+        );
+        dispatch({
+            type: EDIT_SUCCESS,
+            payload: res.data,
+        });
+    } catch (error) {
+        dispatch({
+            type: EDIT_FAIL,
+            payload: error.response.data,
+        });
+    }
+};
+// get one offer
+export const getById = (_id) => async (dispatch) => {
+    dispatch({
+        type: GET_BY_ID,
+    });
+    try {
+        const res = await axios.get(`/Offers/getOne/${_id}`);
+        dispatch({
+            type: GET_BY_ID_SUCCESS,
+            payload: res.data,
+        });
+    } catch (error) {
+        dispatch({
+            type: GET_BY_ID_FAIL,
             payload: error.response.data,
         });
     }

@@ -1,16 +1,14 @@
 import React, { useState } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
+import { Button, FloatingLabel, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { addOffers } from "../../redux/action/OffresAction";
+import Footer from "../footer/Footer";
+import Heads from "../heads/Heads";
+import "./AddOffer.css";
 
 const AddOffer = () => {
-    const { offer } = useSelector((state) => state.OfferReducer);
-
-    // const [newOffer, setNewOffer] = useState({});
-    // const handleChange = (e) => {
-    //     e.preventDefault();
-    //     setNewOffer({ ...newOffer, [e.target.name]: e.target.value });
-    // };
+    const { offers } = useSelector((state) => state.OfferReducer);
+    console.log(offers);
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -29,110 +27,91 @@ const AddOffer = () => {
 
         dispatch(addOffers(newOffer));
 
-        // setTitle("");
-        // setPlace("");
-        // setDescription("");
-        // setNiveau("");
-        // setTypeEmploi("");
+        setTitle("");
+        setPlace("");
+        setDescription("");
+        setNiveau("");
+        setTypeEmploi("");
 
         handleClose();
     };
 
     return (
         <div>
-            <Button className="btn3" onClick={handleShow}>
-                Add New Offer
-            </Button>
+            <Heads />
+            <div className="offr">
+                <div className="form">
+                    <h3 style={{ color: "#303f9f" }}>Add new offers</h3>
 
-            <Modal
-                show={show}
-                onHide={handleClose}
-                backdrop="static"
-                keyboard={false}
-            >
-                <Modal.Header closeButton>
-                    <Modal.Title>ADD new offer</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Group className="mb-3" controlId="formBasicName">
-                            <Form.Label>Title</Form.Label>
-                            <Form.Control
-                                type="text"
-                                name="Title"
-                                placeholder="Enter Title"
-                                value={title}
-                                onChange={(e) => setTitle(e.target.value)}
-                            />
-                        </Form.Group>
+                    <FloatingLabel
+                        controlId="floatingInput"
+                        label="Title"
+                        className="mb-3"
+                    >
+                        <Form.Control
+                            className="inpt"
+                            type="text"
+                            placeholder="title"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                        />
+                    </FloatingLabel>
+                    <FloatingLabel
+                        controlId="floatingTextarea2"
+                        label="Description"
+                    >
+                        <Form.Control
+                            className="inpt"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            as="textarea"
+                            placeholder="Leave a description here"
+                            style={{ height: "100px" }}
+                        />
+                    </FloatingLabel>
+                    <FloatingLabel controlId="floatingPassword" label="Place">
+                        <Form.Control
+                            className="inpt"
+                            type="text"
+                            placeholder="Place"
+                            value={place}
+                            onChange={(e) => setPlace(e.target.value)}
+                        />
+                    </FloatingLabel>
 
-                        <Form.Group
-                            className="mb-3"
-                            controlId="formBasicdescription"
-                        >
-                            <Form.Label>Description</Form.Label>
-                            <Form.Control
-                                type="text"
-                                name="description"
-                                cols="30"
-                                placeholder="Enter Description"
-                                value={description}
-                                onChange={(e) => setDescription(e.target.value)}
-                            />
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicplace">
-                            <Form.Label>Place</Form.Label>
-                            <Form.Control
-                                type="text"
-                                name="place"
-                                placeholder="Enter place"
-                                value={place}
-                                onChange={(e) => setPlace(e.target.value)}
-                            />
-                        </Form.Group>
-                        <Form.Group
-                            className="mb-3"
-                            controlId="formBasicniveau"
-                        >
-                            <Form.Label>Niveau</Form.Label>
-                            <Form.Control
-                                type="text"
-                                name="niveau"
-                                placeholder="Enter niveau"
-                                value={niveau}
-                                onChange={(e) => setNiveau(e.target.value)}
-                            />
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasictype">
-                            <Form.Label>type of employment </Form.Label>
-                            <Form.Control
-                                type="text"
-                                name="type"
-                                placeholder="Enter type of employment"
-                                value={typeEmploi}
-                                onChange={(e) => setTypeEmploi(e.target.value)}
-                            />
-                        </Form.Group>
-                        {/* <Form.Group className="mb-3" controlId="formBasicdate">
-                            <Form.Label>Date </Form.Label>
-                            <Form.Control
-                                type="text"
-                                name="date"
-                                onChange={handleChange}
-                            />
-                        </Form.Group> */}
-
-                        <Button variant="primary" onClick={handleSubmit}>
-                            Save
-                        </Button>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Cancel
+                    <FloatingLabel
+                        controlId="floatingTextarea"
+                        label="Niveau"
+                        className="mb-3"
+                    >
+                        <Form.Control
+                            className="inpt"
+                            as="textarea"
+                            placeholder="Leave a niveau here"
+                            value={niveau}
+                            onChange={(e) => setNiveau(e.target.value)}
+                        />
+                    </FloatingLabel>
+                    <FloatingLabel
+                        controlId="floatingTextarea"
+                        label="Type of Emploi"
+                        className="mb-3"
+                    >
+                        <Form.Control
+                            className="inpt"
+                            as="textarea"
+                            placeholder="Leave a type of emploi here"
+                            value={typeEmploi}
+                            onChange={(e) => setTypeEmploi(e.target.value)}
+                            style={{ marginBottom: "10px" }}
+                        />
+                    </FloatingLabel>
+                    <Button variant="primary" onClick={handleSubmit}>
+                        Save
                     </Button>
-                </Modal.Footer>
-            </Modal>
+                </div>
+            </div>
+            <Footer />
         </div>
     );
 };

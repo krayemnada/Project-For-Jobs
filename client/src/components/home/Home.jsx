@@ -4,8 +4,9 @@ import image from "../../img3.jpg";
 import img from "../../img4.jpg";
 import img5 from "../../img5.jpg";
 
-import { Card, Carousel } from "react-bootstrap";
+// import { Card, Carousel } from "react-bootstrap";
 import Header from "../header/Header";
+import Footer from "../footer/Footer";
 
 const Home = () => {
     return (
@@ -60,46 +61,61 @@ const Home = () => {
             </div>
 
             <div className="all">
-                <div className="block">
-                    <Card style={{ width: "18rem" }}>
-                        <Card.Img variant="top" src={image} />
-                        <Card.Body>
-                            <Card.Title>MARKETING</Card.Title>
-                            <Card.Text>
-                                Some quick example text to build on the card
-                                title and make up the bulk of the card's
-                                content.
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-
-                    <Card style={{ width: "18rem" }}>
-                        <Card.Img variant="top" src={img} />
-                        <Card.Body>
-                            <Card.Title>SOFTWARE Database</Card.Title>
-                            <Card.Text>
-                                Some quick example text to build on the card
-                                title and make up the bulk of the card's
-                                content.
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-
-                    <Card style={{ width: "18rem" }}>
-                        <Card.Img variant="top" src={img5} />
-                        <Card.Body>
-                            <Card.Title>COMMERCIAL</Card.Title>
-                            <Card.Text>
-                                Some quick example text to build on the card
-                                title and make up the bulk of the card's
-                                content.
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
+                <div className="single_event position-relative">
+                    <div className="img">
+                        <img
+                            src={image}
+                            alt=""
+                            width={400}
+                            height={350}
+                            style={{ marginBottom: "40px" }}
+                        />
+                    </div>
+                    <div className="event_details">
+                        <h3 className="tit">
+                            <strong>MARKETING</strong>
+                        </h3>
+                        <p>Some quick example text</p>
+                    </div>
                 </div>
-                <br />
+
+                <div className="single_event position-relative">
+                    <div className="img">
+                        <img
+                            src={img}
+                            alt=""
+                            width={400}
+                            height={350}
+                            style={{ marginBottom: "40px" }}
+                        />
+                    </div>
+                    <div className="event_details">
+                        <h3 className="tit">
+                            <strong>SOFTWARE Database</strong>
+                        </h3>
+                        <p>Some quick example text</p>
+                    </div>
+                </div>
+
+                <div className="single_event position-relative">
+                    <div className="img">
+                        <img
+                            src={img5}
+                            alt=""
+                            width={400}
+                            height={350}
+                            style={{ marginBottom: "40px" }}
+                        />
+                    </div>
+                    <div className="event_details">
+                        <h3 className="tit">
+                            <strong>COMMERCIAL</strong>
+                        </h3>
+                        <p>Some quick example text</p>
+                    </div>
+                </div>
             </div>
-            <div>{/* <Footer /> */}</div>
+            <Footer />
         </div>
     );
 };

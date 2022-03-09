@@ -11,11 +11,13 @@ const auth = async (req, res, next) => {
 
         const user = await User.findById(decoded.id);
         const publisher = await Publisher.findById(decoded.id);
+
         if (user) {
             req.user = user;
             next();
         } else if (publisher) {
             req.user = publisher;
+
             next();
         } else {
             res.status(404).json({ msg: "not authorized" });

@@ -12,6 +12,7 @@ exports.offers = async (req, res) => {
         date,
         niveau,
         typeEmploi,
+        publisher: req.user._id,
     });
     try {
         await newOffer.save();
@@ -25,10 +26,11 @@ exports.offers = async (req, res) => {
 
 exports.getoffers = async (req, res) => {
     try {
-        const offers = await Offer.find().populate(
+        const offers = await Offer.find({ publisher: req.user._id }).populate(
             "publisher",
             " fullName  -_id"
         );
+
         res.send(offers);
     } catch (error) {
         res.status(502).json({ msg: error.message });
@@ -55,5 +57,36 @@ exports.deleteOffers = async (req, res) => {
         res.send("bye bye ");
     } catch (error) {
         res.send(error.message);
+    }
+};
+//edite offer
+
+exports.editOffer = async (req, res) => {
+    try {
+        const editOffer = await Offer.findByIdAndUpdate(
+            req.params.id,
+            {
+                ...req.body,
+            },
+            { new: true }
+        );
+        res.send(editOffer);
+    } catch (error) {
+        res.send(error.message);
+    }
+};
+
+// get all offers to user
+
+exports.getOffersUser = async (req, res) => {
+    try {
+        const offers = await Offer.find().populate(
+            "publisher",
+            " fullName  -_id"
+        );
+
+        res.send(offers);
+    } catch (error) {
+        res.status(502).json({ msg: error.message });
     }
 };

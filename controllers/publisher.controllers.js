@@ -80,3 +80,24 @@ exports.signup = async (req, res) => {
 exports.getPublisher = (req, res) => {
     res.send(req.user);
 };
+//get all  publishers
+exports.getAllPublisher = async (req, res) => {
+    try {
+        const publishers = await publisher.find();
+
+        res.send(publishers);
+    } catch (error) {
+        res.status(502).json({ msg: error.message });
+    }
+};
+//delete publisher
+exports.deletePublisher = async (req, res) => {
+    try {
+        const deletePublisher = await publisher.findByIdAndDelete(
+            req.params.id
+        );
+        res.send("bye bye ");
+    } catch (error) {
+        res.send(error.message);
+    }
+};

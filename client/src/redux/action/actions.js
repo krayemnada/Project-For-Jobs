@@ -1,4 +1,7 @@
 import {
+    DELETE_PUBLISHER,
+    DELETE_PUBLISHER_FAIL,
+    DELETE_PUBLISHER_SUCCESS,
     GET,
     GET_PROFILE,
     GET_PROFILE_FAIL,
@@ -6,6 +9,9 @@ import {
     GET_PROFILE_PUBLISHER,
     GET_PROFILE_SUCCESS,
     GET_PROFILE_SUCCESS_PUBLISHER,
+    GET_PUBLISHER,
+    GET_PUBLISHER_FAIL,
+    GET_PUBLISHER_SUCCESS,
     LOGIN,
     LOGIN_FAIL,
     LOGIN_FAIL_PUBLISHER,
@@ -86,7 +92,7 @@ export const getUserProfile = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: GET_PROFILE_FAIL,
-            payload: error.response.data,
+            // payload: error.response.data,
         });
     }
 };
@@ -99,6 +105,7 @@ export const PublisherSignUp = (newpublisher) => async (dispatch) => {
     dispatch({ type: SIGN_UP });
     try {
         const res = await axios.post("/publisher/signup", newpublisher);
+        localStorage.setItem("token", res.data.token);
         dispatch({
             type: SIGN_UP_SUCCESS_PUBLISHER,
             payload: res.data,
@@ -152,6 +159,43 @@ export const getPublisherProfile = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: GET_PROFILE_FAIL_PUBLISHER,
+            payload: error.response.data,
+        });
+    }
+};
+//get all publishers
+export const getPublishers = () => async (dispatch) => {
+    dispatch({
+        type: GET_PUBLISHER,
+    });
+
+    try {
+        const res = await axios.get("/publisher/getAll");
+
+        dispatch({
+            type: GET_PUBLISHER_SUCCESS,
+            payload: res.data,
+        });
+    } catch (error) {
+        dispatch({
+            type: GET_PUBLISHER_FAIL,
+            payload: error.response.data,
+        });
+    }
+};
+//delete publisher
+export const deletePublisher = (_id) => async (dispatch) => {
+    dispatch({ type: DELETE_PUBLISHER });
+    try {
+        const res = await axios.delete(`/publisher/deletePublisher/${_id}`);
+        // dispatch({
+        //     type: DELETE_PUBLISHER_SUCCESS,
+        //     payload: _id,
+        // });
+        dispatch(getPublishers());
+    } catch (error) {
+        dispatch({
+            type: DELETE_PUBLISHER_FAIL,
             payload: error.response.data,
         });
     }

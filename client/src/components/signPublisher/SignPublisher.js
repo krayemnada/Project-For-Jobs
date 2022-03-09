@@ -2,6 +2,7 @@ import React, { useState } from "react";
 // import "./SignUp.css";
 import { useDispatch, useSelector } from "react-redux";
 import { PublisherSignUp } from "../../redux/action/actions";
+import Footer from "../footer/Footer";
 import Header from "../header/Header";
 
 const SignPublisher = () => {
@@ -453,6 +454,7 @@ const SignPublisher = () => {
                     </section>
                 </div>
             )}
+            <Footer />
         </div>
     );
 };

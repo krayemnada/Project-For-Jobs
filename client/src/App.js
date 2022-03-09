@@ -20,6 +20,12 @@ import GetProfilePublisher from "./components/getprofilePublisher/GetProfilePubl
 import Dashboard from "./components/dashboard/Dashboard";
 import AddOffer from "./components/addoffer/AddOffer";
 import Offers from "./components/offers/Offers";
+import Details from "./components/details/Details";
+import GetOffers from "./components/GetOffers/GetOffers";
+import Publisher from "./components/publisher/Publisher";
+import Users from "./components/users/Users";
+import AdminOffers from "./components/adminOffers/AdminOffers";
+import HomeUser from "./components/homeUser/HomeUser";
 
 function App() {
     const { user, loading } = useSelector((state) => state.userReducer);
@@ -37,9 +43,12 @@ function App() {
                         <>
                             <Route
                                 path="/login"
-                                element={<Navigate replace to="/" />}
+                                element={<Navigate replace to="/admin" />}
                             />
                             <Route path="/admin" element={<Dashboard />} />
+                            <Route path="/pub" element={<Publisher />} />
+                            <Route path="/users" element={<Users />} />
+                            <Route path="/off" element={<AdminOffers />} />
                         </>
                     ) : user && user.userRole === "publisher" ? (
                         <>
@@ -49,13 +58,23 @@ function App() {
                                 element={<GetProfilePublisher />}
                             />
                             <Route path="/myOffers" element={<Offers />} />
-                            {/* <Route path="/addOffer" element={<AddOffer />} /> */}
+                            <Route path="/addOffer" element={<AddOffer />} />
+                            <Route path="/detail/:id" element={<Details />} />
                         </>
                     ) : user && user.userRole === "User" ? (
                         <>
-                            <Route path="/" element={<Home />} />
+                            <Route
+                                path="/login"
+                                element={<Navigate replace to="/HomeUser" />}
+                            />
+
+                            <Route path="/HomeUser" element={<HomeUser />} />
                             <Route path="/profile" element={<Profile />} />
-                            {/* <Route path="/contact" element={<Contact />} /> */}
+                            <Route
+                                path="/offersConsult"
+                                element={<GetOffers />}
+                            />
+                            <Route path="/contact" element={<Contact />} />
                         </>
                     ) : (
                         <>
@@ -65,13 +84,13 @@ function App() {
                                 path="/SignPublisher"
                                 element={<SignPublisher />}
                             />
-                            <Route path="/offrs" element={<Offers />} />
+
                             <Route path="/SignIn" element={<SignUp />} />
                             <Route path="/login" element={<Login />} />
                         </>
                     )}
                 </Routes>
-                <Footer />
+                {/* <Footer /> */}
             </Router>
         </div>
     );

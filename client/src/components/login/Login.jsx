@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { userLogin } from "../../redux/action/actions";
+import Footer from "../footer/Footer";
 import Header from "../header/Header";
 import "./Login.css";
 
@@ -92,6 +93,7 @@ const Login = () => {
                     </section>
                 </div>
             )}
+            <Footer />
         </div>
     );
 };

@@ -1,0 +1,35 @@
+.alls {
+    /* float: left; */
+    border-radius: 10px;
+    /* border: 1px solid; */
+    width: 800px;
+    height: 700px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 350px;
+    background-color: white;
+}
+.pic {
+    margin-top: 20px;
+    margin-bottom: 50px;
+    /* float: left; */
+    margin-left: 150px;
+}
+.bckg {
+    background-color: rgb(236, 231, 240);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.info {
+    /* display: block; */
+    /* float: left; */
+    margin-top: 70px;
+    margin-left: 200px;
+}
+.name {
+    margin: 10px;
+}
+/* .info .pic {
+    display: block;
+    margin-right: 20px;
+} */

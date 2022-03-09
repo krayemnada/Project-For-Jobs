@@ -1,0 +1,23 @@
+.form {
+    /* margin-top: 40px; */
+    padding-top: 50px;
+    border-radius: 10px;
+    /* box-shadow: 5px 5px 2px 1px rgba(97, 98, 99, 0.2); */
+    border: none;
+    margin-left: 900px;
+    width: 600px;
+    /* margin-bottom: 50px; */
+}
+
+.inpt {
+    width: 500px;
+    margin-bottom: 15px;
+}
+.offr {
+    background-position: center center;
+    height: 980px;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("../../img6.png");
+}

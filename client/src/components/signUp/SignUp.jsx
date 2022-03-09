@@ -3,6 +3,7 @@ import "./SignUp.css";
 import { useDispatch, useSelector } from "react-redux";
 import { userSignUp } from "../../redux/action/actions";
 import Header from "../header/Header";
+import Footer from "../footer/Footer";
 
 const SignUp = () => {
     const { user, loading } = useSelector((state) => state);
@@ -13,6 +14,8 @@ const SignUp = () => {
     const [password, setPassword] = useState("");
     const [civility, setCivility] = useState("");
     const [birth, setBirth] = useState("");
+    const [image, setImage] = useState("");
+
     const [governorate, setGovernorate] = useState("");
 
     const dispatch = useDispatch();
@@ -25,6 +28,7 @@ const SignUp = () => {
                 civility,
                 email,
                 birth,
+                image,
                 governorate,
             })
         );
@@ -32,6 +36,8 @@ const SignUp = () => {
         setBirth("");
         setCivility("");
         setEmail("");
+        setImage("");
+
         setPassword("");
         setGovernorate("");
     };
@@ -137,6 +143,22 @@ const SignUp = () => {
                                                     }
                                                 />
                                             </div>
+                                            <div className="form-group">
+                                                <label className="label">
+                                                    Image
+                                                </label>
+                                                <input
+                                                    id="sex-field"
+                                                    type="text"
+                                                    className="form-control"
+                                                    placeholder="your image"
+                                                    value={image}
+                                                    onChange={(e) =>
+                                                        setImage(e.target.value)
+                                                    }
+                                                />
+                                            </div>
+
                                             <div className="form-group">
                                                 <label className="label">
                                                     Governorate
@@ -434,6 +456,7 @@ const SignUp = () => {
                     </section>
                 </div>
             )}
+            <Footer />
         </div>
     );
 };

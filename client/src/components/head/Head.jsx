@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { Button, Offcanvas } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import "./Head.css";
 const Head = () => {
@@ -7,42 +8,44 @@ const Head = () => {
         localStorage.clear();
         navigate("/");
     };
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
     return (
         <div>
             <section>
-                <nav className="nav   ">
-                    <div className="container">
-                        <strong className="tite">
-                            {" "}
-                            <span>Forsa</span>Jobs
-                        </strong>
-
+                <nav
+                    className="nav1"
+                    style={{ display: "flex", justifyContent: "center" }}
+                >
+                    <div className="container" style={{ display: "flex" }}>
                         <div className="collap">
+                            <span className="titl">Dashboard</span>
                             <ul className="navbar-na ">
-                                <li className="item  ">
-                                    <Link to="/">
-                                        {" "}
-                                        <button onClick={deconnexion}>
-                                            Log Out
-                                        </button>{" "}
-                                    </Link>
+                                <li className="item3">Dashboard</li>
+                                <li className="item2">
+                                    <a href="about" className="link">
+                                        Statistics
+                                    </a>
                                 </li>
 
                                 <li className="item1">
-                                    <a href="offers" className="link">
-                                        Offers
+                                    <a href="hh" className="link">
+                                        Settings
                                     </a>
                                 </li>
-                                <li className="item2">
-                                    <a href="about" className="link">
-                                        About
-                                    </a>
-                                </li>
-
-                                <li className="item3">
-                                    <a href="contact" className="link">
-                                        Contact
-                                    </a>
+                                <li className="item  ">
+                                    <Link to="/">
+                                        {" "}
+                                        <button
+                                            onClick={deconnexion}
+                                            className="btt"
+                                        >
+                                            Log Out
+                                        </button>{" "}
+                                    </Link>
                                 </li>
                             </ul>
                         </div>

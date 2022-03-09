@@ -12,6 +12,7 @@ exports.signUp = async (req, res) => {
         password,
         civility,
         birth,
+        image,
         governorate,
         userRole,
     } = req.body;
@@ -26,6 +27,7 @@ exports.signUp = async (req, res) => {
             password,
             civility,
             birth,
+            image,
             governorate,
             userRole,
         });
@@ -42,6 +44,7 @@ exports.signUp = async (req, res) => {
             birth: newUser.birth,
             governorate: newUser.governorate,
             email: newUser.email,
+            image: newUser.image,
             userRole: newUser.userRole,
         };
         const token = jwt.sign(payload, secret);
@@ -56,6 +59,7 @@ exports.signUp = async (req, res) => {
                 governorate: newUser.governorate,
                 password: newUser.password,
                 email: newUser.email,
+                image: newUser.image,
                 userRole: newUser.userRole,
             },
         });
@@ -80,6 +84,7 @@ exports.login = async (req, res) => {
                     civility: theUser.civility,
                     birth: theUser.birth,
                     governorate: theUser.governorate,
+                    image: theUser.image,
                     userRole: theUser.userRole,
                 };
                 const token = jwt.sign(payload, secret);
@@ -93,11 +98,12 @@ exports.login = async (req, res) => {
                         governorate: theUser.governorate,
                         password: theUser.password,
                         email: theUser.email,
+                        image: theUser.image,
                         userRole: theUser.userRole,
                     },
                 });
             } else {
-                res.status(403).json({ msg: "password invalid" });
+                res.status(403).json({ msg: "password or email invalid" });
             }
         } else if (thePub) {
             const isMatch = await bc.compare(password, thePub.password);
@@ -141,4 +147,23 @@ exports.login = async (req, res) => {
 };
 exports.getUser = (req, res) => {
     res.send(req.user);
+};
+//get all users
+exports.getUsers = async (req, res) => {
+    try {
+        const users = await User.find();
+        res.send(users);
+    } catch (error) {
+        res.status(502).json({ msg: error.message });
+    }
+};
+//delete user
+
+exports.deleteUsers = async (req, res) => {
+    try {
+        const deleteUsers = await User.findByIdAndDelete(req.params.id);
+        res.send("bye bye ");
+    } catch (error) {
+        res.send(error.message);
+    }
 };

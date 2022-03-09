@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { PublisherLogin } from "../../redux/actions";
+import Footer from "../footer/Footer";
 import Header from "../header/Header";
 // import "./Login.css";
 
@@ -99,6 +100,7 @@ const LoginPublisher = () => {
                     </section>
                 </div>
             )}
+            <Footer />
         </div>
     );
 };

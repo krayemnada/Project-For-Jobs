@@ -1,10 +1,20 @@
 import {
+    DELETE_PUBLISHER,
+    DELETE_PUBLISHER_SUCCESS,
+    DELETE_USER_FAIL,
+    GET,
     GET_PROFILE,
     GET_PROFILE_FAIL,
     GET_PROFILE_FAIL_PUBLISHER,
     GET_PROFILE_PUBLISHER,
     GET_PROFILE_SUCCESS,
     GET_PROFILE_SUCCESS_PUBLISHER,
+    GET_PUBLISHER,
+    GET_PUBLISHER_FAIL,
+    GET_PUBLISHER_SUCCESS,
+    GET_USER,
+    GET_USER_FAIL,
+    GET_USER_SUCCESS,
     LOGIN,
     LOGIN_FAIL,
     LOGIN_FAIL_PUBLISHER,
@@ -21,6 +31,7 @@ import {
 
 const init = {
     user: [],
+    ListUsers: [],
     publisher: [],
     error: null,
     loading: false,
@@ -30,6 +41,9 @@ const init = {
 
 export const userReducer = (state = init, { type, payload }) => {
     switch (type) {
+        case GET_USER:
+        case DELETE_PUBLISHER:
+        case GET_PUBLISHER:
         case SIGN_UP:
         case LOGIN:
         case GET_PROFILE:
@@ -40,6 +54,9 @@ export const userReducer = (state = init, { type, payload }) => {
                 ...state,
                 // loading: true,
             };
+        case GET_USER_FAIL:
+        case DELETE_USER_FAIL:
+        case GET_PUBLISHER_FAIL:
         case SIGN_UP_FAIL:
         case LOGIN_FAIL:
         case GET_PROFILE_FAIL:
@@ -73,6 +90,20 @@ export const userReducer = (state = init, { type, payload }) => {
                 error: null,
                 publisher: payload,
             };
+        case GET_PUBLISHER_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                publisher: payload,
+            };
+        case GET_USER_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                ListUsers: payload,
+            };
         case LOGIN_SUCCESS_PUBLISHER:
             return {
                 ...state,
@@ -97,6 +128,13 @@ export const userReducer = (state = init, { type, payload }) => {
                 loading: false,
                 error: null,
                 user: payload,
+            };
+        case DELETE_PUBLISHER_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                publisher: state.publisher.filter((el) => el._id !== payload),
+                error: null,
             };
 
         default:
