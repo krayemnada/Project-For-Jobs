@@ -5,6 +5,8 @@ const {
     getUser,
     getUsers,
     deleteUsers,
+    AddUserFile,
+    EditUser,
 } = require("../controllers/user.controllers");
 const auth = require("../middleware/auth");
 const {
@@ -19,6 +21,8 @@ router.post("/signUp", signUpRules(), validator, signUp);
 router.post("/login", loginRules(), login);
 router.get("/get", auth, getUser);
 router.get("/getUser", getUsers);
+router.post("/AddUser", AddUserFile);
+router.put("/editUser/:id", EditUser);
 
 router.delete("/deleteUser/:id", deleteUsers);
 

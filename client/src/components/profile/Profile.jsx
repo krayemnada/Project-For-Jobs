@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserProfile } from "../../redux/action/actions";
+import EditUser from "../edituser/EditUser";
 import HeadUser from "../headUser/HeadUser";
 import "./Profile.css";
 const Profile = () => {
@@ -13,14 +14,14 @@ const Profile = () => {
     }, []);
     return (
         <div>
-            <HeadUser />
+            <HeadUser user={user} />
             <div className="bckg">
                 <div className="prof">
                     <div>
                         <img src={`${user.image}`} alt="" className="picture" />
                         <h1 className="nom">{` ${user.fullName}`}</h1>
                         <p>
-                            <span>
+                            <span style={{ marginLeft: "100px" }}>
                                 {" "}
                                 <i class="fa-solid fa-envelope"></i>
                             </span>{" "}
@@ -28,26 +29,25 @@ const Profile = () => {
                         </p>
                     </div>
                     <div className="div2">
-                        <p>
-                            <strong style={{ marginRight: "120px" }}>
-                                Place :{" "}
-                            </strong>
+                        <p style={{ marginLeft: "100px" }}>
+                            <strong>governorate : </strong>
                             {`${user.governorate}`}
                         </p>
-                        <p>
-                            <strong style={{ marginRight: "40px" }}>
-                                Civility :{" "}
-                            </strong>
+                        <p style={{ marginLeft: "100px" }}>
+                            <strong>Civility : </strong>
                             {`${user.civility}`}
                         </p>
-                        <p>
+                        <p style={{ marginLeft: "100px" }}>
                             <strong>Data Of Birth : </strong> {`${user.birth}`}
                         </p>
                     </div>
                     <br />
                     <br />
                     <br />
-                    <Button>Edit my profile</Button>
+                    <div style={{ marginLeft: "300px" }}>
+                        {" "}
+                        <EditUser />
+                    </div>
                 </div>
             </div>
         </div>

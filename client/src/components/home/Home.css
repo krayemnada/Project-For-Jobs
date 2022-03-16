@@ -14,7 +14,16 @@
     margin: 0 auto; /* Center it */
     width: 100%;
 }
-
+.side_class {
+    background: linear-gradient(
+        135deg,
+        rgb(253, 250, 253) 0%,
+        rgba(32, 124, 229, 1) 100%
+    );
+    width: 100%;
+    padding-top: 50px;
+    height: 400px;
+}
 .cont .content {
     position: absolute;
     bottom: 0;
@@ -91,13 +100,20 @@ h3 {
     padding: 80px 25px;
     color: #ffffff;
 }
-/* .single_event .event_details .tit {
-    color: #ffffff;
-    padding-right: 15px;
-    border-right: 2px solid #fff;
-    font-family: "Rubik", sans-serif;
-    font-size: 14px;
-} */
+.deco_div {
+    margin-left: 350px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+.dco_div {
+    width: 300px;
+    height: 150px;
+    margin-bottom: 30px;
+    margin-right: 2px;
+    border-radius: 10px;
+    box-shadow: 10px 5px 5px rgb(224, 219, 219);
+}
+
 .single_event .event_details .tit h3 {
     display: block;
     color: #5e69e2;

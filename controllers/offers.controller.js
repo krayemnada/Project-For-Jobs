@@ -1,6 +1,6 @@
 const Offer = require("../models/offers");
 const jwt = require("jsonwebtoken");
-
+const path = require("path");
 //add new offer
 
 exports.offers = async (req, res) => {
@@ -26,10 +26,9 @@ exports.offers = async (req, res) => {
 
 exports.getoffers = async (req, res) => {
     try {
-        const offers = await Offer.find({ publisher: req.user._id }).populate(
-            "publisher",
-            " fullName  -_id"
-        );
+        const offers = await Offer.find({
+            publisher: req.user._id,
+        }).populate("publisher", " fullName -_id");
 
         res.send(offers);
     } catch (error) {
@@ -42,7 +41,7 @@ exports.getOneOffers = async (req, res) => {
     try {
         const oneOffer = await Offer.findById(req.params.id).populate(
             "publisher",
-            " fullName  -_id"
+            " fullName -_id"
         );
         res.send(oneOffer);
     } catch (error) {
@@ -80,13 +79,31 @@ exports.editOffer = async (req, res) => {
 
 exports.getOffersUser = async (req, res) => {
     try {
-        const offers = await Offer.find().populate(
-            "publisher",
-            " fullName  -_id"
-        );
+        const UsersOffers = await Offer.find();
 
-        res.send(offers);
+        res.send(UsersOffers);
     } catch (error) {
         res.status(502).json({ msg: error.message });
     }
 };
+
+//Offers filter
+exports.OffersFilter = async (req, res) => {
+    try {
+        const filters = req.query.title;
+        const filteredOffers = await Offer.find(filters);
+        res.send(filteredOffers);
+    } catch (error) {
+        res.status(505).json({ msg: error.message });
+    }
+};
+// get detail of offer
+exports.getDetailOffer = async (req, res) => {
+    try {
+        const DetailOffer = await Offer.findById(req.params.id);
+        res.send(DetailOffer);
+    } catch (error) {
+        res.send(error.message);
+    }
+};
+//upload file

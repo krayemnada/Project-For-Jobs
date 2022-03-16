@@ -1,0 +1,35 @@
+.card-offers {
+    /* border: 1px solid; */
+    box-shadow: 10px 5px 5px rgb(224, 219, 219);
+    width: 450px;
+    height: 350px;
+    margin: 30px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    /* margin-right: 50px; */
+    background: white;
+    /* display: flex; */
+}
+.but {
+    background: linear-gradient(
+        135deg,
+        rgba(206, 75, 232, 1) 0%,
+        rgba(32, 124, 229, 1) 100%
+    );
+}
+.write_card {
+    font-size: 18px;
+    margin-left: 20px;
+}
+.offers_img {
+    width: 1150px;
+    height: 400px;
+    margin-top: 20px;
+    margin-left: 300px;
+}
+.all-back {
+    background: whitesmoke;
+}
+.all_card {
+    display: flex;
+}

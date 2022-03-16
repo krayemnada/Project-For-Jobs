@@ -1,11 +1,50 @@
 import React from "react";
 import "./HomeUser.css";
 import image from "../../img3.jpg";
+import image2 from "../../image_4.jpg";
+import image3 from "../../work-3.jpg";
+import image7 from "../../work-6.jpg";
+
 import img from "../../img4.jpg";
 import img5 from "../../img5.jpg";
 import Footer from "../footer/Footer";
 import HeaderHome from "../HeaderHome/HeaderHome";
+import Carousel from "react-material-ui-carousel";
+import { Paper, Button } from "@mui/material";
+import { Link } from "react-router-dom";
 const HomeUser = () => {
+    var items = [
+        {
+            image: image2,
+            name: "Team Leader",
+            description: "Probably the most random thing you have ever seen!",
+        },
+        {
+            image: image3,
+            name: "HR Office",
+            description: "Hello World!",
+        },
+        {
+            image: image,
+            name: "Marketing",
+            description: "Hello World!",
+        },
+        {
+            image: image7,
+            name: "Full Stack Developpment",
+            description: "Hello World!",
+        },
+        {
+            image: img,
+            name: "software engineer",
+            description: "Hello World!",
+        },
+        {
+            image: img5,
+            name: "Commercial",
+            description: "Hello World!",
+        },
+    ];
     return (
         <div>
             <HeaderHome />
@@ -28,37 +67,70 @@ const HomeUser = () => {
             <br />
             <br />
 
-            <div className="container">
-                <div className="row justify-content-center pb-4">
-                    <div className="col-md-12 heading-section text-center ftco-animate">
-                        <span className="subheading">
-                            Start Searching Today
+            <div>
+                <div>
+                    <div className="title_info">
+                        <span>
+                            <strong
+                                style={{
+                                    marginLeft: "120px",
+                                    fontSize: "18px",
+                                }}
+                            >
+                                Start Searching Today
+                            </strong>
                         </span>
-                        <h2 className="mb-4">Browse Online Jobs Category</h2>
+                        <h2>Browse Online Jobs Category</h2>
                     </div>
                 </div>
             </div>
 
-            {/* <div>
-                <h2 style={{ color: "blue" }}>Join Us</h2>
-                <button className="butt">
-                    <a href="/SignIn">
-                        <h4 style={{ color: "white", textDecoration: "none" }}>
-                            Condidate
-                        </h4>
-                    </a>
-                </button>
-                <button className="butt">
-                    <a href="/SignPublisher">
-                        <h4 style={{ color: "white", textDecoration: "none" }}>
-                            publisher
-                        </h4>
-                    </a>
-                </button>
-            </div> */}
+            <div>
+                <Carousel>
+                    {items.map((elt) => (
+                        <Paper
+                            style={{
+                                marginLeft: "200px",
+                                marginRight: "200px",
+                            }}
+                        >
+                            <img
+                                style={{
+                                    marginLeft: "200px",
+                                    marginBottom: "20px",
+                                }}
+                                src={elt.image}
+                                alt="carousel_image"
+                                width={900}
+                                height={500}
+                            />
+                            <div className="carousel_words">
+                                <h2>{elt.name}</h2>
+                                <p>{elt.description}</p>
+
+                                <Link to="/offersConsult">
+                                    <Button
+                                        className="CheckButton"
+                                        style={{
+                                            background: "blue",
+                                            color: "white",
+                                        }}
+                                    >
+                                        Check it out!
+                                    </Button>
+                                </Link>
+                            </div>
+                        </Paper>
+                    ))}
+                </Carousel>
+                )
+            </div>
 
             <div className="all">
-                <div className="single_event position-relative">
+                <div
+                    className="single_event position-relative"
+                    style={{ marginLeft: "150px" }}
+                >
                     <div className="img">
                         <img
                             src={image}

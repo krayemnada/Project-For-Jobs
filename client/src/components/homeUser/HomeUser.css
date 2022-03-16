@@ -1,0 +1,16 @@
+.carousel_words {
+    position: absolute;
+    bottom: 0;
+    color: blue;
+    opacity: 0.6;
+
+    width: 100%;
+    padding: 290px;
+    top: 0;
+}
+.title_info {
+    margin-top: 20px;
+    margin-bottom: 50px;
+    margin-left: 600px;
+    color: blue;
+}

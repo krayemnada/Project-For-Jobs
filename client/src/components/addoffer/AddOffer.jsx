@@ -9,10 +9,6 @@ import "./AddOffer.css";
 const AddOffer = () => {
     const { offers } = useSelector((state) => state.OfferReducer);
     console.log(offers);
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -32,8 +28,6 @@ const AddOffer = () => {
         setDescription("");
         setNiveau("");
         setTypeEmploi("");
-
-        handleClose();
     };
 
     return (

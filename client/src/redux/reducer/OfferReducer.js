@@ -13,13 +13,24 @@ import {
     GET_BY_ID_FAIL,
     GET_BY_ID_SUCCESS,
     GET_FAIL,
+    GET_OFFERS,
+    GET_OFFERS_SUCCESS,
+    GET_OFFERS_FAIL,
     GET_SUCCESS,
+    GET_USER_FAIL,
+    GET_DETAIL_OFFERS,
+    GET_DETAIL_OFFERS_SUCCESS,
+    GET_DETAIL_OFFERS_FAIL,
 } from "../actionTypes";
 
 const init = {
     offers: [],
+    UserLoading: false,
     loading: false,
     offerFile: [],
+    detailOffers: [],
+    detailLoading: false,
+    UsersOffers: [],
     offerLoading: true,
     error: null,
 };
@@ -34,6 +45,11 @@ export const OfferReducer = (state = init, { type, payload }) => {
                 ...state,
                 loading: true,
             };
+        case GET_OFFERS:
+            return {
+                ...state,
+                UserLoading: true,
+            };
         case GET_FAIL:
         case ADD_FAIL:
         case DELETE_FAIL:
@@ -41,6 +57,23 @@ export const OfferReducer = (state = init, { type, payload }) => {
             return {
                 ...state,
                 loading: false,
+                error: payload,
+            };
+        case GET_DETAIL_OFFERS_FAIL:
+            return {
+                ...state,
+                detailLoading: false,
+                error: payload,
+            };
+        case GET_DETAIL_OFFERS:
+            return {
+                ...state,
+                detailLoading: true,
+            };
+        case GET_OFFERS_FAIL:
+            return {
+                ...state,
+                UserLoading: false,
                 error: payload,
             };
         case GET_BY_ID_FAIL:
@@ -74,6 +107,20 @@ export const OfferReducer = (state = init, { type, payload }) => {
                 loading: false,
                 error: null,
                 offers: payload,
+            };
+        case GET_OFFERS_SUCCESS:
+            return {
+                ...state,
+                UserLoading: false,
+                error: null,
+                UsersOffers: payload,
+            };
+        case GET_DETAIL_OFFERS_SUCCESS:
+            return {
+                ...state,
+                detailLoading: false,
+                error: null,
+                detailOffers: payload,
             };
         case ADD_SUCCESS:
             return {

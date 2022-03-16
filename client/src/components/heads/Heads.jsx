@@ -48,10 +48,7 @@ const Heads = () => {
                                         </Dropdown.Item>
                                     </NavDropdown> */}
                                     <div className="dropdown">
-                                        <a
-                                            href="javascript:void(0)"
-                                            className="dropbtn"
-                                        >
+                                        <a href="#" className="dropbtn">
                                             {" "}
                                             My offers
                                         </a>
@@ -61,7 +58,7 @@ const Heads = () => {
                                         <div className="dropdown-content">
                                             <a href="/myOffers">My Offers</a>
                                             <a href="/addOffer">Add Offers</a>
-                                            <a href="consult">
+                                            <a href="/myOffersConsult">
                                                 Consult my offers
                                             </a>
                                         </div>

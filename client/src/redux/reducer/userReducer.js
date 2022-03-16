@@ -27,10 +27,17 @@ import {
     SIGN_UP_PUBLISHER,
     SIGN_UP_SUCCESS,
     SIGN_UP_SUCCESS_PUBLISHER,
+    USER_EDIT,
+    USER_EDIT_FAIL,
+    USER_EDIT_SUCCESS,
+    USER_FILE,
+    USER_FILE_FAIL,
+    USER_FILE_SUCCESS,
 } from "../actionTypes";
 
 const init = {
     user: [],
+    userFiles: [],
     ListUsers: [],
     publisher: [],
     error: null,
@@ -41,6 +48,7 @@ const init = {
 
 export const userReducer = (state = init, { type, payload }) => {
     switch (type) {
+        case USER_FILE:
         case GET_USER:
         case DELETE_PUBLISHER:
         case GET_PUBLISHER:
@@ -50,6 +58,7 @@ export const userReducer = (state = init, { type, payload }) => {
         case SIGN_UP_PUBLISHER:
         case LOGIN_PUBLISHER:
         case GET_PROFILE_PUBLISHER:
+        case USER_EDIT:
             return {
                 ...state,
                 // loading: true,
@@ -63,6 +72,8 @@ export const userReducer = (state = init, { type, payload }) => {
         case LOGIN_FAIL_PUBLISHER:
         case SIGN_UP_FAIL_PUBLISHER:
         case GET_PROFILE_FAIL_PUBLISHER:
+        case USER_FILE_FAIL:
+        case USER_EDIT_FAIL:
             return {
                 ...state,
                 loading: false,
@@ -135,6 +146,20 @@ export const userReducer = (state = init, { type, payload }) => {
                 loading: false,
                 publisher: state.publisher.filter((el) => el._id !== payload),
                 error: null,
+            };
+        case USER_FILE_SUCCESS:
+            return {
+                ...state,
+                error: null,
+                userFiles: [...state.userFiles, payload],
+            };
+        case USER_EDIT_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                user: state.user.map((el) =>
+                    el._id === payload._id ? payload : el
+                ),
             };
 
         default:

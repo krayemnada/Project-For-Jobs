@@ -26,6 +26,8 @@ import Publisher from "./components/publisher/Publisher";
 import Users from "./components/users/Users";
 import AdminOffers from "./components/adminOffers/AdminOffers";
 import HomeUser from "./components/homeUser/HomeUser";
+import OfferDetails from "./components/offersDetails/OfferDetails";
+import UploadFile from "./components/uploadFile/UploadFile";
 
 function App() {
     const { user, loading } = useSelector((state) => state.userReducer);
@@ -73,6 +75,14 @@ function App() {
                             <Route
                                 path="/offersConsult"
                                 element={<GetOffers />}
+                            />
+                            <Route
+                                path="/detailOffer/:id"
+                                element={<OfferDetails />}
+                            />
+                            <Route
+                                path="/uploadFile"
+                                element={<UploadFile />}
                             />
                             <Route path="/contact" element={<Contact />} />
                         </>

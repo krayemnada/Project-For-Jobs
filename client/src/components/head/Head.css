@@ -17,21 +17,21 @@
     /* margin-left: 50px; */
     font-family: "Roboto";
 }
-.nada {
+/* .nada {
     width: 100px;
     height: 100px;
     border-radius: 50%;
     float: left;
-}
+} */
 .side {
-    /* margin: 15px; */
+    margin: 15px;
     margin-right: 45px;
 }
 .cc {
     margin: 20px;
 }
 .nad {
-    /* display: inline; */
+    display: inline;
     padding-top: 30px;
     color: white;
 }

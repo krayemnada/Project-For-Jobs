@@ -167,3 +167,35 @@ exports.deleteUsers = async (req, res) => {
         res.send(error.message);
     }
 };
+// file user
+exports.AddUserFile = async (req, res) => {
+    const { userName, userEmail, userFile, phone } = req.body;
+    const newUserFile = new User({
+        userName,
+        userEmail,
+        userFile,
+        phone,
+        // User: req.user._id,
+    });
+    try {
+        await newUserFile.save();
+        res.status(213).json(newUserFile);
+    } catch (error) {
+        res.status(550).json({ msg: error.message });
+    }
+};
+// edit user
+exports.EditUser = async (req, res) => {
+    try {
+        const editUser = await User.findByIdAndUpdate(
+            req.params.id,
+            {
+                ...req.body,
+            },
+            { new: true }
+        );
+        res.send(editUser);
+    } catch (error) {
+        res.send(error.message);
+    }
+};

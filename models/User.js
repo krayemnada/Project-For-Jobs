@@ -9,6 +9,10 @@ const userSchema = new Schema({
     birth: String,
     governorate: String,
     image: String,
+    userName: String,
+    userEmail: String,
+    userFile: String,
+    phone: String,
     userRole: {
         type: String,
         default: "User",

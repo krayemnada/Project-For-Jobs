@@ -14,52 +14,103 @@ const Home = () => {
             <Header />
             <div className="imag">
                 <div class="cont">
-                    {/* <img
-                src={image}
-                alt="img"
-                style={{ width: "100%", height: "600px" }}
-            /> */}
                     <div className="content">
                         <h1 style={{ color: "blue" }}>Welcome to ForsaJobs</h1>
-                        <h3 style={{ color: "blue", marginLeft: "260px" }}>
-                            {" "}
-                            If you Search about jobs you on the right way
-                        </h3>
+
+                        <h2
+                            style={{
+                                marginLeft: "350px",
+                                color: "white",
+                            }}
+                        >
+                            1500+ Jobs posted last week
+                        </h2>
                     </div>
                 </div>
             </div>
+
             <br />
             <br />
 
-            <div className="container">
-                <div className="row justify-content-center pb-4">
-                    <div className="col-md-12 heading-section text-center ftco-animate">
-                        <span className="subheading">
+            <div>
+                <div>
+                    <div className="title_info">
+                        <strong
+                            style={{
+                                marginLeft: "120px",
+                                fontSize: "18px",
+                                marginBottom: "20px",
+                            }}
+                        >
                             Start Searching Today
-                        </span>
+                        </strong>
                         <h2 className="mb-4">Browse Online Jobs Category</h2>
                     </div>
                 </div>
             </div>
-
-            <div>
-                <h2 style={{ color: "blue" }}>Join Us</h2>
-                <button className="butt">
-                    <a href="/SignIn">
-                        <h4 style={{ color: "white", textDecoration: "none" }}>
-                            Condidate
-                        </h4>
-                    </a>
-                </button>
-                <button className="butt">
-                    <a href="/SignPublisher">
-                        <h4 style={{ color: "white", textDecoration: "none" }}>
-                            publisher
-                        </h4>
-                    </a>
-                </button>
+            <div style={{ display: "flex" }} className="deco_div">
+                <div className="dco_div">
+                    <span style={{ marginLeft: "100px", fontSize: "20px" }}>
+                        {" "}
+                        <strong>Searching</strong>
+                    </span>
+                    <p>this a great website to find a jobs </p>
+                </div>
+                <div className="dco_div">
+                    <span style={{ marginLeft: "100px", fontSize: "20px" }}>
+                        <strong>Applying</strong>
+                    </span>
+                    <p> you can aplying for a job</p>
+                </div>
+                <div className="dco_div">
+                    <span style={{ marginLeft: "100px", fontSize: "20px" }}>
+                        <strong>Security</strong>
+                    </span>
+                    <p> heigh security of this website</p>
+                </div>
+                <div className="dco_div">
+                    <span style={{ marginLeft: "100px", fontSize: "20px" }}>
+                        <strong>Notifications</strong>
+                    </span>
+                    <p> you can receive notifications for any changes </p>
+                </div>
             </div>
 
+            <div className="side_class">
+                <div
+                    style={{
+                        marginLeft: "500px",
+                    }}
+                >
+                    <h2 style={{ color: "white" }}>
+                        Join us today without any hesitation
+                    </h2>
+                    <button className="butt">
+                        <a href="/SignIn">
+                            <h4
+                                style={{
+                                    color: "white",
+                                    textDecoration: "none",
+                                }}
+                            >
+                                Condidate
+                            </h4>
+                        </a>
+                    </button>
+                    <button className="butt">
+                        <a href="/SignPublisher">
+                            <h4
+                                style={{
+                                    color: "white",
+                                    textDecoration: "none",
+                                }}
+                            >
+                                publisher
+                            </h4>
+                        </a>
+                    </button>
+                </div>
+            </div>
             <div className="all">
                 <div className="single_event position-relative">
                     <div className="img">

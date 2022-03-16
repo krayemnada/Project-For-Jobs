@@ -16,8 +16,15 @@ import {
     GET_BY_ID,
     GET_BY_ID_FAIL,
     GET_BY_ID_SUCCESS,
+    GET_DETAIL_OFFERS,
+    GET_DETAIL_OFFERS_FAIL,
+    GET_DETAIL_OFFERS_SUCCESS,
     GET_FAIL,
+    GET_OFFERS_FAIL,
+    GET_OFFERS_SUCCESS,
     GET_SUCCESS,
+    POST_FILE_SUCCESS,
+    POST_FILE_FAIL,
 } from "../actionTypes";
 
 //get offers
@@ -50,12 +57,18 @@ export const getOffer = () => async (dispatch) => {
 export const addOffers = (newoffer) => async (dispatch) => {
     dispatch({ type: ADD });
     try {
-        const res = await axios.post("/offers/PubOffers", newoffer);
+        const config = {
+            headers: {
+                authorization: localStorage.getItem("token"),
+            },
+        };
+        const res = await axios.post("/offers/PubOffers", newoffer, config);
         // console.log(res.data);
-        dispatch({
-            type: ADD_SUCCESS,
-            payload: res.data,
-        });
+        dispatch(
+            getOffer()
+            // type: ADD_SUCCESS,
+            // payload: res.data,
+        );
     } catch (error) {
         dispatch({
             type: ADD_FAIL,
@@ -69,12 +82,14 @@ export const addOffers = (newoffer) => async (dispatch) => {
 export const deleteOffer = (_id) => async (dispatch) => {
     dispatch({ type: DELETE });
     try {
-        const res = await axios.delete(`/offers/delete/${_id}`);
+        const config = {
+            headers: {
+                authorization: localStorage.getItem("token"),
+            },
+        };
+        const res = await axios.delete(`/offers/delete/${_id}`, config);
 
-        dispatch({
-            type: DELETE_SUCCESS,
-            payload: res.data,
-        });
+        dispatch({ type: DELETE_SUCCESS, payload: res.data });
     } catch (error) {
         dispatch({
             type: DELETE_FAIL,
@@ -88,6 +103,11 @@ export const editOffer = (editedOffer) => async (dispatch) => {
         type: EDIT,
     });
     try {
+        // const config = {
+        //     headers: {
+        //         authorization: localStorage.getItem("token"),
+        //     },
+        // };
         const res = await axios.put(
             `/Offers/editone/${editedOffer._id}`,
             editedOffer
@@ -109,11 +129,14 @@ export const getById = (_id) => async (dispatch) => {
         type: GET_BY_ID,
     });
     try {
-        const res = await axios.get(`/Offers/getOne/${_id}`);
-        dispatch({
-            type: GET_BY_ID_SUCCESS,
-            payload: res.data,
-        });
+        const config = {
+            headers: {
+                authorization: localStorage.getItem("token"),
+            },
+        };
+        const res = await axios.get(`/Offers/getOne/${_id}`, config);
+        // console.log(res);
+        dispatch({ type: GET_BY_ID_SUCCESS, payload: res.data });
     } catch (error) {
         dispatch({
             type: GET_BY_ID_FAIL,
@@ -121,3 +144,58 @@ export const getById = (_id) => async (dispatch) => {
         });
     }
 };
+
+// get all Offers with their publisher to any user
+
+export const getAllOffer = () => async (dispatch) => {
+    try {
+        const res = await axios.get("/offers/getOffersUser");
+
+        dispatch({
+            type: GET_OFFERS_SUCCESS,
+            payload: res.data,
+        });
+    } catch (error) {
+        dispatch({
+            type: GET_OFFERS_FAIL,
+            payload: error.response.data,
+        });
+    }
+};
+//get detail of offer
+export const detailOffer = (_id) => async (dispatch) => {
+    dispatch({
+        type: GET_DETAIL_OFFERS,
+    });
+    try {
+        const res = await axios.get(`/Offers/getOne/${_id}`);
+        // console.log(res);
+        dispatch({ type: GET_DETAIL_OFFERS_SUCCESS, payload: res.data });
+    } catch (error) {
+        dispatch({
+            type: GET_DETAIL_OFFERS_FAIL,
+            payload: error.response.data,
+        });
+    }
+};
+// upload file
+// export const UploadFiles = () => async (dispatch) => {
+//     try {
+//         const config = {
+//             headers: {
+//                 authorization: localStorage.getItem("token"),
+//             },
+//         };
+//         const res = await axios.post("/Offers/uploads", config);
+
+//         dispatch({
+//             type: POST_FILE_SUCCESS,
+//             payload: res.data,
+//         });
+//     } catch (error) {
+//         dispatch({
+//             type: POST_FILE_FAIL,
+//             payload: error.response.data,
+//         });
+//     }
+// };

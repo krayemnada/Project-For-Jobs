@@ -10,7 +10,7 @@ const Dashboard = () => {
         <div>
             <Head />
 
-            <div style={{ display: "flex" }}>
+            {/* <div style={{ display: "flex" }}>
                 <div className="sidebar">
                     <div>
                         <Button className="btt1">
@@ -409,7 +409,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };

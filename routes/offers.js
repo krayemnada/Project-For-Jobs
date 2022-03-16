@@ -5,8 +5,11 @@ const {
     getOneOffers,
     deleteOffers,
     editOffer,
-    getOneOffer,
+
     getOffersUser,
+    OffersFilter,
+    getDetailOffer,
+    UploadFile,
 } = require("../controllers/offers.controller");
 
 const auth = require("../middleware/auth");
@@ -20,6 +23,9 @@ router.get("/getOffersUser", getOffersUser);
 router.get("/getOne/:id", getOneOffers);
 router.delete("/delete/:id", deleteOffers);
 router.put("/editone/:id", editOffer);
-// router.get("/getOneOffer/:id", getOneOffer);
+router.get("/detailOffer/:id", getDetailOffer);
+// router.post("/uploads", auth, UploadFile);
+
+router.get("/filterOffers", OffersFilter);
 
 module.exports = router;
