@@ -63,22 +63,22 @@ export const editUser = (editedUser) => async (dispatch) => {
         });
     }
 };
-// user file
-export const UserFile = (newFile) => async (dispatch) => {
-    dispatch({ type: USER_FILE });
-    try {
-        const config = {
-            headers: {
-                authorization: localStorage.getItem("token"),
-            },
-        };
-        const res = await axios.post("/user/AddUser", newFile, config);
-        // console.log(res.data);
-        dispatch({ type: USER_FILE_SUCCESS, payload: res.data });
-    } catch (error) {
-        dispatch({
-            type: USER_FILE_FAIL,
-            payload: error.response.data,
-        });
-    }
-};
+// // user file
+// export const UserFile = (newFile) => async (dispatch) => {
+//     dispatch({ type: USER_FILE });
+//     try {
+//         const config = {
+//             headers: {
+//                 authorization: localStorage.getItem("token"),
+//             },
+//         };
+//         const res = await axios.post("/user/AddUser", newFile, config);
+//         // console.log(res.data);
+//         dispatch({ type: USER_FILE_SUCCESS, payload: res.data });
+//     } catch (error) {
+//         dispatch({
+//             type: USER_FILE_FAIL,
+//             payload: error.response.data,
+//         });
+//     }
+// };

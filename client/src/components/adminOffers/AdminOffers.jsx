@@ -3,15 +3,19 @@ import { Button } from "react-bootstrap";
 import Head from "../head/Head";
 import nada from "../../nada.jpg";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteOffer, getOffer } from "../../redux/action/OffresAction";
+import {
+    deleteOffer,
+    getAllOffer,
+    getOffer,
+} from "../../redux/action/OffresAction";
 
 const AdminOffers = () => {
-    const { offers } = useSelector((state) => state.OfferReducer);
-    console.log(offers);
+    const { UsersOffers } = useSelector((state) => state.OfferReducer);
+    console.log(UsersOffers);
     const dispatch = useDispatch();
-    // useEffect(() => {
-    //     dispatch(getOffer());
-    // }, []);
+    useEffect(() => {
+        dispatch(getAllOffer());
+    }, []);
 
     return (
         <div>
@@ -36,7 +40,7 @@ const AdminOffers = () => {
                             <h5> Dashboard</h5>
                         </a>
                         <div className="side">
-                            <a href="#">
+                            <a href="/admin">
                                 <i class="fa fa-fw fa-home"></i>{" "}
                                 <span className="cc">Home</span>
                             </a>
@@ -83,20 +87,34 @@ const AdminOffers = () => {
                 </div>
             </div>
 
-            {/* <div style={{ marginLeft: "400px" }}>
+            <div style={{ marginLeft: "400px" }}>
                 <div>
-                    <div style={{ display: "flex" }}>
-                        {offers &&
-                            offers.map((elt, key) => (
+                    <div>
+                        {UsersOffers &&
+                            UsersOffers.map((elt, key) => (
                                 <div className="card-publisher ">
-                                  
-                                    <h1>{elt.fullName}</h1>
-                                    <h3 style={{ marginLeft: "150px" }}>
-                                        {elt.email}
-                                    </h3>
-                                   
-                                    <p>{elt.phone}</p>
-                                    <p>{elt.governorate}</p>
+                                    <div style={{ display: "flex" }}>
+                                        <label htmlFor="">Title :</label>{" "}
+                                        <h5>{elt.title}</h5>
+                                    </div>
+                                    <div style={{ display: "flex" }}>
+                                        <label htmlFor="">Description:</label>{" "}
+                                        <p style={{ marginLeft: "150px" }}>
+                                            {elt.description}
+                                        </p>
+                                    </div>
+                                    <div style={{ display: "flex" }}>
+                                        <label htmlFor="">Place :</label>{" "}
+                                        <p>{elt.place}</p>
+                                    </div>
+                                    <div style={{ display: "flex" }}>
+                                        <label htmlFor="">Level : </label>{" "}
+                                        <p>{elt.niveau}</p>
+                                    </div>
+                                    <div style={{ display: "flex" }}>
+                                        <label htmlFor=""> Date :</label>{" "}
+                                        <p>{elt.date}</p>
+                                    </div>
                                     <Button
                                         onClick={() =>
                                             dispatch(deleteOffer(elt._id))
@@ -108,7 +126,7 @@ const AdminOffers = () => {
                             ))}
                     </div>
                 </div>
-            </div> */}
+            </div>
         </div>
     );
 };

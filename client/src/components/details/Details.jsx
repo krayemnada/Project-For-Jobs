@@ -53,7 +53,7 @@ const Details = () => {
                                         htmlFor=""
                                         style={{ fontSize: "25px" }}
                                     >
-                                        Description :
+                                        Description:{" "}
                                     </label>{" "}
                                     <p>{offerFile.description}</p>
                                 </div>
@@ -89,6 +89,17 @@ const Details = () => {
                                         Type of job :
                                     </label>{" "}
                                     <p>{offerFile.typeEmploi}</p>
+                                </div>
+                                <div style={{ display: "flex" }}>
+                                    {" "}
+                                    <label
+                                        htmlFor=""
+                                        style={{ fontSize: "25px" }}
+                                    >
+                                        {" "}
+                                        Date :
+                                    </label>{" "}
+                                    <p>{offerFile.date}</p>
                                 </div>
                             </div>
 

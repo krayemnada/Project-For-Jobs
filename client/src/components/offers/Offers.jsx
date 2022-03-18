@@ -32,8 +32,18 @@ const Offers = () => {
                                             marginTop: "10px",
                                         }}
                                     >
-                                        <Card.Title>
-                                            <h1 className="a1"> {elt.title}</h1>
+                                        <Card.Title style={{ display: "flex" }}>
+                                            <label htmlFor="">Title : </label>{" "}
+                                            <h3
+                                                className="a1"
+                                                style={{
+                                                    color: "white",
+                                                    marginLeft: "230px",
+                                                }}
+                                            >
+                                                {" "}
+                                                {elt.title}
+                                            </h3>
                                         </Card.Title>
                                         <Link to={`/detail/${elt._id}`}>
                                             <Button

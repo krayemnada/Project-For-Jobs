@@ -28,6 +28,10 @@ import AdminOffers from "./components/adminOffers/AdminOffers";
 import HomeUser from "./components/homeUser/HomeUser";
 import OfferDetails from "./components/offersDetails/OfferDetails";
 import UploadFile from "./components/uploadFile/UploadFile";
+import About from "./components/about/About";
+import HeadUser from "./components/headUser/HeadUser";
+import OfferConsult from "./components/offerConsult/OfferConsult";
+import Upload from "./components/postUpload/Upload";
 
 function App() {
     const { user, loading } = useSelector((state) => state.userReducer);
@@ -62,6 +66,7 @@ function App() {
                             <Route path="/myOffers" element={<Offers />} />
                             <Route path="/addOffer" element={<AddOffer />} />
                             <Route path="/detail/:id" element={<Details />} />
+                            <Route path="/CVFile" element={<OfferConsult />} />
                         </>
                     ) : user && user.userRole === "User" ? (
                         <>
@@ -69,7 +74,11 @@ function App() {
                                 path="/login"
                                 element={<Navigate replace to="/HomeUser" />}
                             />
-
+                            <Route path="/upload" element={<Upload />} />
+                            <Route
+                                path="/detailOffer/:id"
+                                element={<OfferDetails />}
+                            />
                             <Route path="/HomeUser" element={<HomeUser />} />
                             <Route path="/profile" element={<Profile />} />
                             <Route
@@ -90,6 +99,7 @@ function App() {
                         <>
                             <Route path="/" element={<Home />} />
                             <Route path="/contact" element={<Contact />} />
+                            <Route path="/about" element={<About />} />
                             <Route
                                 path="/SignPublisher"
                                 element={<SignPublisher />}

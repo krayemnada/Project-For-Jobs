@@ -76,9 +76,13 @@ export const GET_DETAIL_OFFERS_FAIL = "GET_DETAIL_OFFERS_FAIL";
 export const GET_DETAIL_OFFERS_SUCCESS = "GET_DETAIL_OFFERS_SUCCESS";
 // user file
 export const USER_FILE = "USER_FILE";
-export const USER_FILE_SUCCESS = "USER_FILE_SUCCESS";
-export const USER_FILE_FAIL = "USER_FILE_FAIL";
+
 //edit user
 export const USER_EDIT = "USER_EDIT";
 export const USER_EDIT_SUCCESS = "USER_EDIT_SUCCESS";
 export const USER_EDIT_FAIL = "USER_EDIT_FAIL";
+
+export const ADD_POST = "ADD_POST";
+export const GET_POSTS = "GET_POSTS";
+export const GET_CURRENT_POST = "GET_GET_CURRENT_POST ";
+export const GET_POST_DETAIL = "GET_POST_DETAIL";

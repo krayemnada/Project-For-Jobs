@@ -1,15 +1,21 @@
 .card-offers {
-    /* border: 1px solid; */
     box-shadow: 10px 5px 5px rgb(224, 219, 219);
-    width: 450px;
-    height: 350px;
+    width: 1050px;
+    height: 220px;
     margin: 30px;
     margin-top: 100px;
     margin-bottom: 100px;
     /* margin-right: 50px; */
-    background: white;
+    background: #f5f5f5;
     /* display: flex; */
 }
+.card-offers:hover {
+    transform: scale(1.1);
+    transition: 0.5s;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(32, 124, 229, 1);
+}
+
 .but {
     background: linear-gradient(
         135deg,
@@ -21,6 +27,7 @@
     font-size: 18px;
     margin-left: 20px;
 }
+
 .offers_img {
     width: 1150px;
     height: 400px;
@@ -28,8 +35,16 @@
     margin-left: 300px;
 }
 .all-back {
-    background: whitesmoke;
+    background: #f5f5f5;
 }
-.all_card {
+/* .all_card {
     display: flex;
+} */
+.button-search {
+    background: linear-gradient(
+        135deg,
+        rgba(206, 75, 232, 1) 0%,
+        rgba(32, 124, 229, 1) 100%
+    );
+    color: white;
 }

@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserProfile } from "../../redux/action/actions";
 import EditUser from "../edituser/EditUser";
+import Footer from "../footer/Footer";
 import HeadUser from "../headUser/HeadUser";
 import "./Profile.css";
 const Profile = () => {
@@ -50,6 +51,7 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
     );
 };

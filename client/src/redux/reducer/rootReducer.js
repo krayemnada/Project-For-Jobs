@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
 import OfferReducer from "./OfferReducer";
 import userReducer from "./userReducer";
-
-export default combineReducers({ OfferReducer, userReducer });
+import postReducer from "./postReducer";
+export default combineReducers({ OfferReducer, userReducer, postReducer });

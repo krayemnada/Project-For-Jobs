@@ -1,104 +1,28 @@
+import Logout from "@mui/icons-material/Logout";
+import PersonAdd from "@mui/icons-material/PersonAdd";
+import Settings from "@mui/icons-material/Settings";
+import {
+    Avatar,
+    Box,
+    Divider,
+    IconButton,
+    ListItemIcon,
+    Menu,
+    MenuItem,
+    Tooltip,
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Button, Form, Modal, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { detailOffer } from "../../redux/action/OffresAction";
-import { UserFile } from "../../redux/action/UserActions";
+import { add_post } from "../../redux/action/postAction";
+import Upload from "../postUpload/Upload";
+import Footer from "../footer/Footer";
 import HeadUser from "../headUser/HeadUser";
 import UploadFile from "../uploadFile/UploadFile";
 
 import "./OfferDetails.css";
-
-function MyVerticallyCenteredModal(props) {
-    const { userFiles } = useSelector((state) => state.userReducer);
-    console.log(userFiles);
-
-    const [userName, setUserName] = useState("");
-    const [userEmail, setUserEmail] = useState("");
-    const [userFile, setUserFile] = useState("");
-    const [phone, setPhone] = useState("");
-
-    const dispatch = useDispatch();
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const newFile = { userName, userEmail, userFile, phone };
-
-        dispatch(UserFile(newFile));
-
-        setUserName("");
-        setUserEmail("");
-        setUserFile("");
-        setPhone("");
-    };
-
-    return (
-        <Modal
-            {...props}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-        >
-            <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
-                    Apply for this job
-                </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <Form>
-                    <Form.Group className="mb-3" controlId="formBasic">
-                        <Form.Label>Your name</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="name"
-                            value={userName}
-                            onChange={(e) => setUserName(e.target.value)}
-                        />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Your Email address</Form.Label>
-                        <Form.Control
-                            type="email"
-                            placeholder="Enter email"
-                            value={userEmail}
-                            onChange={(e) => setUserEmail(e.target.value)}
-                        />
-                    </Form.Group>
-
-                    <Form.Group
-                        className="mb-3"
-                        controlId="exampleForm.ControlTextarea1"
-                    >
-                        <Form.Label>Cover Letter</Form.Label>
-                        <Form.Control
-                            as="textarea"
-                            rows={3}
-                            value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
-                        />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label>
-                            {/* <UploadFile
-                                value={userFile}
-                                onChange={(e) => setUserFile(e.target.value)}
-                            /> */}
-                        </Form.Label>
-                        <Form.Control
-                            type="file"
-                            placeholder="Enter your Cv"
-                            value={userFile}
-                            onChange={(e) => setUserFile(e.target.value)}
-                        />
-                    </Form.Group>
-                </Form>
-            </Modal.Body>
-            <Modal.Footer>
-                <Button onClick={props.onHide}>Close</Button>
-                <Button onClick={handleSubmit}>Save</Button>
-            </Modal.Footer>
-        </Modal>
-    );
-}
 
 const OfferDetails = () => {
     let { id } = useParams();
@@ -111,78 +35,308 @@ const OfferDetails = () => {
         dispatch(detailOffer(id));
     }, []);
 
-    const [modalShow, setModalShow] = React.useState(false);
+    const { user } = useSelector((state) => state.userReducer);
 
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const navigate = useNavigate();
+    const deconnexion = () => {
+        localStorage.clear();
+        navigate("/");
+    };
     return (
         <div>
-            <HeadUser />
-            {detailLoading ? (
-                <Spinner
-                    animation="border"
-                    role="status"
-                    style={{
-                        marginLeft: "500px",
-                        marginTop: "500px",
-                    }}
+            <section>
+                <nav
+                    className="nav_user  "
+                    style={{ display: "flex", justifyContent: "center" }}
                 >
-                    <span className="visually-hidden">Loading...</span>
-                </Spinner>
-            ) : (
-                <div className="container">
-                    <div className="offerDetail">
-                        {/* <h1 style={{ marginRight: "1000px" }}>
-                            {detailOffers.publisher.fullName}
-                        </h1> */}
-                        {/* <h1 style={{ color: "red" }}>Offer Details</h1> */}
-                        <ul>
-                            <label htmlFor="">
-                                <strong>Title : </strong>
-                            </label>{" "}
-                            <p className="parag-detail">{detailOffers.title}</p>
-                            <label htmlFor="">
-                                <strong>Description :</strong>{" "}
-                            </label>{" "}
-                            <p className="parag-detail">
-                                {detailOffers.description}
-                            </p>
-                            <label htmlFor="">
-                                <strong>Place :</strong>{" "}
-                            </label>{" "}
-                            <p className="parag-detail">
-                                {" "}
-                                {detailOffers.place}
-                            </p>
-                            <label htmlFor="">
-                                <strong> Niveau :</strong>{" "}
-                            </label>{" "}
-                            <p className="parag-detail">
-                                {detailOffers.niveau}
-                            </p>
-                            <label htmlFor="">
-                                <strong> Type of Emploi : </strong>
-                            </label>{" "}
-                            <p className="parag-detail">
-                                {detailOffers.typeEmploi}
-                            </p>
-                        </ul>
+                    <div className="container" style={{ display: "flex" }}>
                         <div
-                            style={{ marginLeft: "500px", marginTop: "100px" }}
+                            className="nav-collap-user"
+                            style={{ display: "flex" }}
                         >
-                            <Button
-                                variant="primary"
-                                onClick={() => setModalShow(true)}
-                            >
-                                Apply for this job
-                            </Button>
+                            <strong className="navbar_title">
+                                {" "}
+                                <span>Forsa</span>
+                                Jobs
+                            </strong>
 
-                            <MyVerticallyCenteredModal
-                                show={modalShow}
-                                onHide={() => setModalShow(false)}
-                            />
+                            <div>
+                                <ul className="navbar-user ">
+                                    <li className="item3">
+                                        <a href="/HomeUser" className="link">
+                                            home
+                                        </a>
+                                    </li>
+                                    <li className="item3">
+                                        <a href="profile" className="link">
+                                            Profile
+                                        </a>
+                                    </li>
+                                    <li className="item2">
+                                        <a href="about" className="link">
+                                            About
+                                        </a>
+                                    </li>
+                                    <li className="item4">
+                                        <a
+                                            href="/offersConsult"
+                                            className="link"
+                                        >
+                                            Offers
+                                        </a>
+                                    </li>
+
+                                    <li className="item  ">
+                                        <React.Fragment>
+                                            <Box
+                                                sx={{
+                                                    display: "flex",
+                                                    alignItems: "center",
+                                                    textAlign: "center",
+                                                }}
+                                            >
+                                                <Tooltip title="Account settings">
+                                                    <IconButton
+                                                        onClick={handleClick}
+                                                        size="small"
+                                                        sx={{ ml: 2 }}
+                                                        aria-controls={
+                                                            open
+                                                                ? "account-menu"
+                                                                : undefined
+                                                        }
+                                                        aria-haspopup="true"
+                                                        aria-expanded={
+                                                            open
+                                                                ? "true"
+                                                                : undefined
+                                                        }
+                                                    >
+                                                        <Avatar
+                                                            alt="user_image"
+                                                            src={user.image}
+                                                            sx={{
+                                                                width: 40,
+                                                                height: 40,
+                                                            }}
+                                                        ></Avatar>
+                                                    </IconButton>
+                                                </Tooltip>
+                                            </Box>
+                                            <Menu
+                                                anchorEl={anchorEl}
+                                                id="account-menu"
+                                                open={open}
+                                                onClose={handleClose}
+                                                onClick={handleClose}
+                                                PaperProps={{
+                                                    elevation: 0,
+                                                    sx: {
+                                                        overflow: "visible",
+                                                        filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                                                        mt: 1.5,
+                                                        "& .MuiAvatar-root": {
+                                                            width: 32,
+                                                            height: 32,
+                                                            ml: -0.5,
+                                                            mr: 1,
+                                                        },
+                                                        "&:before": {
+                                                            content: '""',
+                                                            display: "block",
+                                                            position:
+                                                                "absolute",
+                                                            top: 0,
+                                                            right: 14,
+                                                            width: 10,
+                                                            height: 10,
+                                                            bgcolor:
+                                                                "background.paper",
+                                                            transform:
+                                                                "translateY(-50%) rotate(45deg)",
+                                                            zIndex: 0,
+                                                        },
+                                                    },
+                                                }}
+                                                transformOrigin={{
+                                                    horizontal: "right",
+                                                    vertical: "top",
+                                                }}
+                                                anchorOrigin={{
+                                                    horizontal: "right",
+                                                    vertical: "bottom",
+                                                }}
+                                            >
+                                                <MenuItem>
+                                                    <Avatar /> Profile
+                                                </MenuItem>
+                                                <MenuItem>
+                                                    <Avatar /> My account
+                                                </MenuItem>
+                                                <Divider />
+                                                <MenuItem>
+                                                    <ListItemIcon>
+                                                        <PersonAdd fontSize="small" />
+                                                    </ListItemIcon>
+                                                    Add another account
+                                                </MenuItem>
+                                                <MenuItem>
+                                                    <ListItemIcon>
+                                                        <Settings fontSize="small" />
+                                                    </ListItemIcon>
+                                                    Settings
+                                                </MenuItem>
+                                                <MenuItem>
+                                                    <ListItemIcon>
+                                                        <Logout fontSize="small" />
+                                                    </ListItemIcon>
+                                                    <Link to="/">
+                                                        {" "}
+                                                        <button
+                                                            onClick={
+                                                                deconnexion
+                                                            }
+                                                            className="btton"
+                                                        >
+                                                            Log Out
+                                                        </button>{" "}
+                                                    </Link>
+                                                </MenuItem>
+                                            </Menu>
+                                        </React.Fragment>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-            )}
+                </nav>
+            </section>
+
+            <div className="all_back">
+                {detailLoading ? (
+                    <Spinner
+                        animation="border"
+                        role="status"
+                        style={{
+                            marginLeft: "500px",
+                            marginTop: "500px",
+                        }}
+                    >
+                        <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                ) : (
+                    <div className="container all_detail_offers">
+                        <div style={{ display: "flex" }}>
+                            <div>
+                                <img
+                                    className="image_detail"
+                                    src="https://totempool.com/wp-content/uploads/2021/09/job-search-concept_96bbde34ceb8a9647123a2dbbf47f1bf_800.jpg"
+                                    alt="img"
+                                    width={550}
+                                    height={600}
+                                />
+                            </div>
+                            <div>
+                                <ul className="offer_Detail">
+                                    {/* <div className="details_word">
+                                        <label htmlFor="">
+                                            <strong>Company :</strong>
+                                        </label>{" "}
+                                        <h5 className="parag-detail">
+                                            {detailOffers.publisher.fullName}
+                                        </h5>
+                                    </div> */}
+                                    {/* <h1 style={{ color: "red" }}>Offer Details</h1> */}
+                                    <div className="details_word">
+                                        <label htmlFor="">
+                                            <strong>Title : </strong>
+                                        </label>{" "}
+                                        <p className="parag-detail">
+                                            {detailOffers.title}
+                                        </p>
+                                    </div>
+                                    <div className="details_word">
+                                        <label htmlFor="">
+                                            <strong>Description :</strong>{" "}
+                                        </label>{" "}
+                                        <p className="parag-detail">
+                                            {detailOffers.description}
+                                        </p>
+                                    </div>
+                                    <div className="details_word">
+                                        <label htmlFor="">
+                                            <strong>Place :</strong>{" "}
+                                        </label>{" "}
+                                        <p className="parag-detail">
+                                            {" "}
+                                            {detailOffers.place}
+                                        </p>
+                                    </div>
+                                    <div className="details_word">
+                                        <label htmlFor="">
+                                            <strong> Niveau :</strong>{" "}
+                                        </label>{" "}
+                                        <p className="parag-detail">
+                                            {detailOffers.niveau}
+                                        </p>
+                                    </div>
+                                    <div className="details_word">
+                                        <label htmlFor="">
+                                            <strong> Type of Emploi : </strong>
+                                        </label>{" "}
+                                        <p className="parag-detail">
+                                            {detailOffers.typeEmploi}
+                                        </p>
+                                    </div>
+                                    <div
+                                        style={{
+                                            marginTop: "100px",
+                                            marginLeft: "100px",
+                                        }}
+                                    >
+                                        <Link to="/upload">
+                                            {" "}
+                                            <Button className="but">
+                                                Apply for this job
+                                            </Button>
+                                        </Link>
+                                        {/* <UploadFile />
+                                         */}
+                                        {/* <Upload /> */}
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                        {/* <div
+
+                            marginBottom: "50px",
+                        }}
+                    >
+                        <Button
+                            variant="primary"
+                            onClick={() => setModalShow(true)}
+                        >
+                            Apply for this job
+                        </Button>
+
+                        <MyVerticallyCenteredModal
+                            show={modalShow}
+                            onHide={() => setModalShow(false)}
+                        />
+                    </div> */}
+                    </div>
+                )}
+            </div>
+            <Footer />
         </div>
     );
 };

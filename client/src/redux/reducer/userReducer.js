@@ -48,7 +48,6 @@ const init = {
 
 export const userReducer = (state = init, { type, payload }) => {
     switch (type) {
-        case USER_FILE:
         case GET_USER:
         case DELETE_PUBLISHER:
         case GET_PUBLISHER:
@@ -72,7 +71,6 @@ export const userReducer = (state = init, { type, payload }) => {
         case LOGIN_FAIL_PUBLISHER:
         case SIGN_UP_FAIL_PUBLISHER:
         case GET_PROFILE_FAIL_PUBLISHER:
-        case USER_FILE_FAIL:
         case USER_EDIT_FAIL:
             return {
                 ...state,
@@ -147,12 +145,12 @@ export const userReducer = (state = init, { type, payload }) => {
                 publisher: state.publisher.filter((el) => el._id !== payload),
                 error: null,
             };
-        case USER_FILE_SUCCESS:
-            return {
-                ...state,
-                error: null,
-                userFiles: [...state.userFiles, payload],
-            };
+        // case USER_FILE_SUCCESS:
+        //     return {
+        //         ...state,
+        //         error: null,
+        //         userFiles: [...state.userFiles, payload],
+        //     };
         case USER_EDIT_SUCCESS:
             return {
                 ...state,

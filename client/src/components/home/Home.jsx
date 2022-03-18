@@ -54,25 +54,66 @@ const Home = () => {
                         {" "}
                         <strong>Searching</strong>
                     </span>
-                    <p>this a great website to find a jobs </p>
+                    <p
+                        style={{
+                            marginLeft: "50px",
+                            fontSize: "18px",
+                            marginTop: "30px",
+                        }}
+                    >
+                        this a great website to find a jobs{" "}
+                    </p>
                 </div>
                 <div className="dco_div">
-                    <span style={{ marginLeft: "100px", fontSize: "20px" }}>
+                    <span
+                        style={{
+                            marginLeft: "100px",
+                            fontSize: "20px",
+                            marginTop: "50px",
+                        }}
+                    >
                         <strong>Applying</strong>
                     </span>
-                    <p> you can aplying for a job</p>
+                    <p
+                        style={{
+                            marginLeft: "50px",
+                            fontSize: "18px",
+                            marginTop: "30px",
+                        }}
+                    >
+                        {" "}
+                        you can aplying for a job
+                    </p>
                 </div>
                 <div className="dco_div">
                     <span style={{ marginLeft: "100px", fontSize: "20px" }}>
                         <strong>Security</strong>
                     </span>
-                    <p> heigh security of this website</p>
+                    <p
+                        style={{
+                            marginLeft: "50px",
+                            fontSize: "18px",
+                            marginTop: "30px",
+                        }}
+                    >
+                        {" "}
+                        heigh security of this website
+                    </p>
                 </div>
                 <div className="dco_div">
                     <span style={{ marginLeft: "100px", fontSize: "20px" }}>
                         <strong>Notifications</strong>
                     </span>
-                    <p> you can receive notifications for any changes </p>
+                    <p
+                        style={{
+                            marginLeft: "50px",
+                            fontSize: "18px",
+                            marginTop: "30px",
+                        }}
+                    >
+                        {" "}
+                        you can receive notifications for any changes{" "}
+                    </p>
                 </div>
             </div>
 
@@ -82,7 +123,7 @@ const Home = () => {
                         marginLeft: "500px",
                     }}
                 >
-                    <h2 style={{ color: "white" }}>
+                    <h2 style={{ color: "white", marginLeft: "100px" }}>
                         Join us today without any hesitation
                     </h2>
                     <button className="butt">
@@ -112,14 +153,21 @@ const Home = () => {
                 </div>
             </div>
             <div className="all">
-                <div className="single_event position-relative">
+                <div
+                    className="single_event position-relative"
+                    style={{
+                        marginLeft: "200px",
+                    }}
+                >
                     <div className="img">
                         <img
                             src={image}
                             alt=""
                             width={400}
                             height={350}
-                            style={{ marginBottom: "40px" }}
+                            style={{
+                                marginBottom: "40px",
+                            }}
                         />
                     </div>
                     <div className="event_details">
